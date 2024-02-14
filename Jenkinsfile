@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build Image') {
+            steps {
+                script {
+                    // Build the Docker image using the Dockerfile in the current directory
+                    sh "docker build -t myapp ."
+                }
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                script {
+                    // Run the Docker container in detached mode
+                    sh "docker run -d --name myapp -p 3000:5500 myapp"
+                }
+            }
+        }
+
+        stage('Wait for App') {
+            steps {
+                script {
+                    // Wait a few seconds to ensure the Flask app is fully up and running
+                    sh "sleep 10"
+                }
+            }
+        }
+
+        stage('Execute Tests') {
+            steps {
+                script {
+                    // Install test dependencies
+                    sh "pip install -r requirements-test.txt"
+                    // Run tests, assuming tests are in a directory named 'tests'
+                    sh "python -m unittest discover -s tests"
+}
+}
+        }
+    }
+}
