@@ -36,7 +36,7 @@ pipeline {
                     sh "sudo apt install python3-pip -y"
                     sh "pip install -r requirements-test.txt"
                     // Run tests, assuming tests are in a directory named 'tests'
-                    sh "python -m unittest discover -s tests"
+                    sh "python3 -m unittest discover -s tests"
 }
 }
         }
