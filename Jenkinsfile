@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container in detached mode
-                    sh "docker run -d --name myapp -p 3000:5500 myapp"
+                    sh "docker run -d --name myapp -p 80:5500 myapp"
                 }
             }
         }
@@ -32,6 +32,7 @@ pipeline {
             steps {
                 script {
                     // Install test dependencies
+                    sh "sudo apt install python3-pip"
                     sh "pip install -r requirements-test.txt"
                     // Run tests, assuming tests are in a directory named 'tests'
                     sh "python -m unittest discover -s tests"
