@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     // Retrieve SonarQube token securely from Jenkins credentials
-                    withCredentials([string(credentialsId: 'your-credentials-id', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'sonar', variable: 'SONAR_TOKEN')]) {
                         // Run SonarScanner using Docker, analyzing the Python application
                         sh """
                         docker run --rm \
