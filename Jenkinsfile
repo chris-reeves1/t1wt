@@ -10,7 +10,8 @@ pipeline {
                 script {
                     // Remove any existing containers to avoid conflicts, then build the Docker image
                     //sh 'docker rm -f $(docker ps -aq) || true'
-                    sh 'docker build -t myapp .'
+                    //sh 'docker build -t myapp .'
+                    sh 'ls'
                 }
             }
         }
@@ -19,7 +20,8 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container in detached mode
-                    sh 'docker run -d --name myapp -p 80:5500 --network test myapp'
+                   // sh 'docker run -d --name myapp -p 80:5500 --network test myapp'
+                    sh 'ls'
                 }
             }
         }
