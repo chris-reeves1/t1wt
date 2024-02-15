@@ -48,8 +48,7 @@ pipeline {
                           -Dsonar.projectKey=myapp \
                           -Dsonar.sources=. \
                           -Dsonar.host.url=\${SONARQUBE_HOST} \
-                          -Dsonar.login=\${SONAR_TOKEN} \
-                          -X
+                          -Dsonar.login=\${SONAR_TOKEN} 
                         """
                     }
                 }
