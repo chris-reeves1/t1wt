@@ -44,6 +44,7 @@ pipeline {
                           -e SONAR_HOST_URL=\${SONARQUBE_HOST} \
                           -e SONAR_LOGIN=\${SONAR_TOKEN} \
                           -v \${WORKSPACE}:/usr/src \
+                          -X \
                           sonarsource/sonar-scanner-cli \
                           -Dsonar.projectKey=myapp \
                           -Dsonar.sources=. \
