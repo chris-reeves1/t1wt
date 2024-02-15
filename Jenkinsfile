@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container in detached mode
-                    sh 'docker run -d --name myapp -p 80:5500 myapp'
+                    sh 'docker run -d --name myapp -p 80:5500 --network test myapp'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
                     withCredentials([string(credentialsId: '82684f5d-da8b-43a4-93a5-b00db83e37df', variable: 'SONAR_TOKEN')]) {
                         // Run SonarScanner using Docker, analyzing the Python application
                         sh """
-                        docker run --rm \
+                        docker run --rm --network test \
                           -e SONAR_HOST_URL=\${SONARQUBE_HOST} \
                           -e SONAR_LOGIN=\${SONAR_TOKEN} \
                           -v \${WORKSPACE}:/usr/src \
