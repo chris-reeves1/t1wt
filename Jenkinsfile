@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Define environment variable for SonarQube host
-        SONARQUBE_HOST = 'http://18.130.158.182/:9000/' // Use your SonarQube server's IP and port
+        SONARQUBE_HOST = 'http://18.130.158.182:9000/' // Use your SonarQube server's IP and port
     }
     stages {
         stage('Build Image') {
