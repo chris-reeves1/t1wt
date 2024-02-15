@@ -9,7 +9,7 @@ pipeline {
             steps {
                 script {
                     // Remove any existing containers to avoid conflicts, then build the Docker image
-                    sh 'docker rm -f $(docker ps -aq) || true'
+                    //sh 'docker rm -f $(docker ps -aq) || true'
                     sh 'docker build -t myapp .'
                 }
             }
@@ -70,7 +70,7 @@ pipeline {
     post {
         always {
             // Clean up Docker container
-            sh 'docker rm -f myapp || true'
+            //sh 'docker rm -f myapp || true'
         }
     }
 }
