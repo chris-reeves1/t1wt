@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Dockerfile in the current directory
-                    sh "docker rm -f $(docker ps -aq) || true"
+                    sh 'docker rm -f $(docker ps -aq) || true'
                     sh "docker build -t myapp ."
                 }
             }
