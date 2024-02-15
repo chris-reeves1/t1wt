@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Install test dependencies
-                    sh "sudo apt install python3-pip"
+                    sh "sudo apt install python3-pip -y"
                     sh "pip install -r requirements-test.txt"
                     // Run tests, assuming tests are in a directory named 'tests'
                     sh "python -m unittest discover -s tests"
