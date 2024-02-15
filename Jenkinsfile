@@ -44,12 +44,12 @@ pipeline {
                           -e SONAR_HOST_URL=\${SONARQUBE_HOST} \
                           -e SONAR_LOGIN=\${SONAR_TOKEN} \
                           -v \${WORKSPACE}:/usr/src \
-                          -X \
                           sonarsource/sonar-scanner-cli \
                           -Dsonar.projectKey=myapp \
                           -Dsonar.sources=. \
                           -Dsonar.host.url=\${SONARQUBE_HOST} \
-                          -Dsonar.login=\${SONAR_TOKEN}
+                          -Dsonar.login=\${SONAR_TOKEN} \
+                          -X
                         """
                     }
                 }
