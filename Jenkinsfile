@@ -70,6 +70,7 @@ pipeline {
     post {
         always {
             // Clean up Docker container
+            sh 'ls'
             //sh 'docker rm -f myapp || true'
         }
     }
