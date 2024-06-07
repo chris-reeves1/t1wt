@@ -9,7 +9,7 @@ pipeline {
             steps {
                 script {
                     // Remove any existing containers and build the Docker image
-                    sh 'docker rm -f $(docker ps -aq) || true'
+                    //sh 'docker rm -f $(docker ps -aq) || true'
                     sh 'docker build -t myapp .'
                 }
             }
