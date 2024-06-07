@@ -2,16 +2,16 @@ pipeline {
     agent any
     environment {
         // Define environment variable for SonarQube host
-        SONARQUBE_HOST = 'http://18.130.158.182:9000/' // Use your SonarQube server's IP and port
+        SONARQUBE_HOST = 'http://13.41.56.17:9000/' // Use your SonarQube server's IP and port
     }
     stages {
         stage('Build Image') {
             steps {
                 script {
                     // Remove any existing containers to avoid conflicts, then build the Docker image
-                    //sh 'docker rm -f $(docker ps -aq) || true'
-                    //sh 'docker build -t myapp .'
-                    sh 'ls'
+                    sh 'docker rm -f $(docker ps -aq) || true'
+                    sh 'docker build -t myapp .'
+                    //sh 'ls'
                 }
             }
         }
@@ -20,8 +20,8 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container in detached mode
-                   // sh 'docker run -d --name myapp -p 80:5500 --network test myapp'
-                    sh 'ls'
+                    sh 'docker run -d --name myapp -p 80:5500 --network test myapp'
+                    //sh 'ls'
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     // Retrieve SonarQube token securely from Jenkins credentials
-                    withCredentials([string(credentialsId: '82684f5d-da8b-43a4-93a5-b00db83e37df', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'dbecac81-5024-4e03-b688-391965562dab', variable: 'SONAR_TOKEN')]) {
                         // Run SonarScanner using Docker, analyzing the Python application
                         sh """
                         docker run --rm --network test \
@@ -57,23 +57,22 @@ pipeline {
             }
         }
 
-        stage('Execute Tests') {
-            steps {
-                script {
-                    // Assuming you have a requirements.txt for test dependencies
-                    sh 'pip install -r requirements.txt'
-                    // Run your Python application tests
-                    sh 'python3 -m unittest discover -s tests'
-                }
-            }
-        }
-    }
+        //stage('Execute Tests') {
+        //    steps {
+          //      script {
+            //        // Assuming you have a requirements.txt for test dependencies
+              //      sh 'pip install -r requirements.txt'
+                //    // Run your Python application tests
+                  //  sh 'python3 -m unittest discover -s tests'
+                //}
+            //}
+        //}
+    //}
     post {
         always {
             // Clean up Docker container
-            sh 'ls'
-            //sh 'docker rm -f myapp || true'
+            //sh 'ls'
+            sh 'docker rm -f myapp || true'
         }
     }
 }
-
