@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Define environment variable for SonarQube host
-        SONARQUBE_HOST = 'http://13.41.56.17:9000/' // SonarQube server's IP and port
+        SONARQUBE_HOST = 'http://13.40.19.217:9000/' // SonarQube server's IP and port
     }
     stages {
         stage('Build Image') {
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     // Retrieve SonarQube token securely and run SonarScanner
-                    withCredentials([string(credentialsId: 'dbecac81-5024-4e03-b688-391965562dab', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: '72652812-cd9a-441c-9c20-ca21c0facdbe', variable: 'SONAR_TOKEN')]) {
                         sh """
                         docker run --rm --network test \
                           -e SONAR_HOST_URL=\${SONARQUBE_HOST} \
